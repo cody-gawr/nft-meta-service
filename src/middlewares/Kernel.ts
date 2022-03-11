@@ -8,6 +8,7 @@ import { Application } from "express";
 
 import CORS from "./CORS";
 import Http from "./Http";
+import Statics from "./Statics";
 
 import Locals from "../providers/Locals";
 
@@ -21,6 +22,9 @@ class Kernel {
 
     // Mount basic express apis middleware
     _express = Http.mount(_express);
+
+    // Mount statics middleware
+    _express = Statics.mount(_express);
 
     return _express;
   }
