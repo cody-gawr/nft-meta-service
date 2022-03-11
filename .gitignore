@@ -1,9 +1,11 @@
 node_modules/
 .vscode
 package-lock.json
+yarn.lock
 .cache/
 public/static
 *.marko.js
 .env.example
-.logs/*.log
+logs/*.log
 dist/
+.env
