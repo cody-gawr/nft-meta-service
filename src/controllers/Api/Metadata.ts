@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
 class Metadata {
-  public static upload(req: Request, res: Response, _: NextFunction): Response {
+  public static upload(_: Request, res: Response, __: NextFunction): Response {
     return res.json({
-      message: "Hit the upload endpoint",
+      message: "file uploaded",
     });
   }
 }

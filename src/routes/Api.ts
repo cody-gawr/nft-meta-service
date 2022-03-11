@@ -7,14 +7,22 @@ import MetadataController from "../controllers/Api/Metadata";
 
 const router = Router();
 const storage = multer.diskStorage({
-  destination: (_, __, cb) => {
+  destination: (_, file, cb) => {
     cb(null, path.join(__dirname, "../../public/storage"));
   },
   filename: (_, file, cb) => {
     cb(null, `${file.originalname}`);
   },
 });
-const upload = multer({ storage });
+const jsonFileFilter = (_, file, cb) => {
+  if (file.mimetype === "application/json") {
+    cb(null, true);
+  } else {
+    cb(new multer.MulterError("LIMIT_UNEXPECTED_FILE"));
+  }
+};
+
+const upload = multer({ storage, fileFilter: jsonFileFilter });
 
 router.get("/", HomeController.index);
 router.post("/upload", upload.single("metadata"), MetadataController.upload);
