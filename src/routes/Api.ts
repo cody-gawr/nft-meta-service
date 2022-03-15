@@ -26,5 +26,6 @@ const upload = multer({ storage, fileFilter: jsonFileFilter });
 
 router.get("/", HomeController.index);
 router.post("/upload", upload.single("metadata"), MetadataController.upload);
+router.get("/metadata/:tokenId([0-9]+)", MetadataController.getByTokenId);
 
 export default router;
